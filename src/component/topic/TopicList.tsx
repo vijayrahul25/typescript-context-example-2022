@@ -10,7 +10,7 @@ import { NoData } from "../common/NoData";
 import { topic } from "../../context/reducer/Reducers";
 
 type TtopicParam = {
-  categoryId: string;
+  categoryId: number;
 };
 
 export const TopicList = () => {

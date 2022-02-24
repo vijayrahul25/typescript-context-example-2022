@@ -10,7 +10,7 @@ import { PostCard } from "./PostCard";
 import { post } from "../../context/reducer/Reducers";
 
 type TPostParam = {
-  topicId: string;
+  topicId: number;
 };
 
 export const PostList = () => {
