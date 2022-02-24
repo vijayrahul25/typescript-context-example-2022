@@ -13,7 +13,7 @@ export const TopicList = () => {
   const { state, loadTopics } = React.useContext(GlobalContext);
 
   const { topicList, loading, error } = state;
-  let params = useParams():any;
+  let params = useParams();
   
   React.useEffect(() => {
     loadTopics(params.categoryId);
