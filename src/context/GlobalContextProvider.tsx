@@ -7,8 +7,8 @@ import { Reducers, TState } from "./reducer/Reducers";
 export type TValueContext = {
   state: TState;
   loadCategories: () => any;
-  loadTopics: (categoryId: number) => any;
-  loadPosts: (id: number) => any;
+  loadTopics: (categoryId: string) => any;
+  loadPosts: (topicId: string) => any;
 };
 
 const initialState: TState = {
@@ -22,13 +22,13 @@ const initialState: TState = {
 const initialContext = {
   state: initialState,
   loadCategories: () => {},
-  loadTopics: (categoryId: number) => {},
-  loadPosts: (id: number) => {},
+  loadTopics: (categoryId: string) => {},
+  loadPosts: (topicId: string) => {},
 };
 
 export const GlobalContext = React.createContext<TValueContext>(initialContext);
 
-export const GlobalContextProvider = ({ children }: any) => {
+export const GlobalContextProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer(Reducers, initialState);
 
   let loadCategories = () => {
@@ -51,7 +51,7 @@ export const GlobalContextProvider = ({ children }: any) => {
       );
   };
 
-  const loadTopics = (categoryId: number) => {
+  const loadTopics = (categoryId: string) => {
     dispatch({ type: Actions.IN_PROGRESS, data: [] });
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/category/${categoryId}`)
@@ -68,10 +68,10 @@ export const GlobalContextProvider = ({ children }: any) => {
         })
       );
   };
-  const loadPosts = (id: number) => {
+  const loadPosts = (topicId: string) => {
     dispatch({ type: Actions.IN_PROGRESS, data: [] });
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/topic/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/topic/${topicId}`)
       .then((resp) => {
         dispatch({
           type: Actions.LOAD_POSTS_SUCESS,

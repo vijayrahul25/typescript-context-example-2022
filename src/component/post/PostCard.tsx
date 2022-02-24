@@ -9,14 +9,8 @@ export const PostCard: React.FC<props> = ({ post }) => {
       <div className="row align-items-center">
         <div className="col-md-8 mb-3 mb-sm-0">
           <p className="text-sm">
-            <span className="op-6">Posted</span>{" "}
-            <a className="text-black" href="#">
-              20 minutes
-            </a>{" "}
-            <span className="op-6">ago by</span>{" "}
-            <a className="text-black" href="#">
-              KenyeW
-            </a>
+            <span className="op-6">Posted</span> 20 minutes{" "}
+            <span className="op-6">ago by</span> KenyeW
           </p>
           <div className="text-sm op-5">
             <div dangerouslySetInnerHTML={{ __html: post.content }} />

@@ -10,10 +10,10 @@ import { NoData } from "../common/NoData";
 import { topic } from "../../context/reducer/Reducers";
 
 type TtopicParam = {
-  categoryId: number;
+  categoryId: string;
 };
 
-export const TopicList = () => {
+export const TopicList: React.FC = () => {
   const { state, loadTopics } = React.useContext(GlobalContext);
 
   const { topicList, loading, error } = state;

@@ -10,10 +10,10 @@ import { PostCard } from "./PostCard";
 import { post } from "../../context/reducer/Reducers";
 
 type TPostParam = {
-  topicId: number;
+  topicId: string;
 };
 
-export const PostList = () => {
+export const PostList: React.FC = () => {
   const { state, loadPosts } = React.useContext(GlobalContext);
 
   const { postList, loading, error } = state;
