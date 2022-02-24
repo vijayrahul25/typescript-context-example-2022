@@ -1,44 +1,48 @@
-
-import {Actions} from "../actions/Actions";
-
+import { Actions } from "../actions/Actions";
 
 type langauge = {
-  name:string,
-  description:string 
-}
+  name: string;
+  description: string;
+};
 type translations = {
-  en:langauge
-}
+  en: langauge;
+};
 export type category = {
-  backgroundImage:string,
-  translations:translations ,
-  cid:number,
-  totalPostCount:number,
-  totalTopicCount:number
-}
+  backgroundImage: string;
+  translations: translations;
+  cid: number;
+  totalPostCount: number;
+  totalTopicCount: number;
+};
 
 type teaser = {
-  content:string
-}
+  content: string;
+};
 export type topic = {
-  tid:number,
-  title:string ,
-  teaser:teaser,
-  postcount:number,
-}
+  tid: number;
+  title: string;
+  teaser: teaser;
+  postcount: number;
+};
+
+export type post = {
+  pid: number;
+  content: string;
+};
 
 export type TActionType = {
-  type:Actions,
-  data:any[],
-}
+  type: Actions;
+  data: any;
+};
 export type TState = {
-  categoryList: Array<category>
-  topicList: Array<topic>
-  loading:boolean,
-  error:boolean,
-}
+  categoryList: Array<category>;
+  topicList: Array<topic>;
+  postList: Array<post>;
+  loading: boolean;
+  error: boolean;
+};
 
-export const Reducers = (state:TState, action:TActionType) => {
+export const Reducers = (state: TState, action: TActionType) => {
   switch (action.type) {
     case Actions.IN_PROGRESS: {
       return {
@@ -46,14 +50,14 @@ export const Reducers = (state:TState, action:TActionType) => {
         loading: true,
       };
     }
-    case Actions.LOAD_CATEGORIES_SUCESS: {      
+    case Actions.LOAD_CATEGORIES_SUCESS: {
       return {
         ...state,
         loading: false,
         error: false,
         categoryList: action.data,
       };
-    } 
+    }
     case Actions.LOAD_TOPICS_SUCESS: {
       return {
         ...state,
@@ -61,7 +65,15 @@ export const Reducers = (state:TState, action:TActionType) => {
         error: false,
         topicList: action.data,
       };
-    }   
+    }
+    case Actions.LOAD_POSTS_SUCESS: {
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        postList: action.data,
+      };
+    }
     case Actions.ERROR: {
       return {
         ...state,

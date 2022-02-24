@@ -7,16 +7,20 @@ import { Loader } from "../common/Loader";
 import { Error } from "../common/Error";
 import { NoData } from "../common/NoData";
 
-import {topic} from "../../context/reducer/Reducers";
+import { topic } from "../../context/reducer/Reducers";
+
+type TtopicParam = {
+  categoryId: string;
+};
 
 export const TopicList = () => {
   const { state, loadTopics } = React.useContext(GlobalContext);
 
   const { topicList, loading, error } = state;
-  let params = useParams();
-  
+  const { categoryId } = useParams() as TtopicParam;
+
   React.useEffect(() => {
-    loadTopics(params.categoryId);
+    loadTopics(categoryId);
   }, []);
 
   if (loading) return <Loader />;
@@ -26,7 +30,7 @@ export const TopicList = () => {
   return (
     <div className="row">
       <ol className="list-group ">
-        {topicList.map((topic:topic) => (
+        {topicList.map((topic: topic) => (
           <TopicCard key={topic.tid} topic={topic} />
         ))}
       </ol>
